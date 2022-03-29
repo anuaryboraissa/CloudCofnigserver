@@ -16,8 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/provider")
 public class GitProviderApplication {
 	@GetMapping("/data")
-    public List<String> getList() {
-		return Stream.of("Anuary","issa","Iddii").collect(Collectors.toList());
+	
+    public String getList() {
+		return "hellow world.....";
 	}
 	public static void main(String[] args) {
 		SpringApplication.run(GitProviderApplication.class, args);
