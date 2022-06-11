@@ -42,4 +42,8 @@ public interface StudentRepostry extends JpaRepository<Student, Long>{
 	Collection<Student> findwhoConfirmFriedsByStatus(String email,int status,long ownId);
 	@Query(value = "select * from student s inner join requests r on r.stdfrom_id=s.st_id where r.stdto_id=?1 and r.stdfrom_id=?2",nativeQuery = true)
 	Student editRequestStatus(long toId,long fromid);
+	@Query(value = "select distinct s.st_id,s.st_age,s.email,s.st_f_name,s.progr_id,s.st_l_name,s.st_password,s.perm_id,s.st_photo from student s inner join message m on m.std_from_id=s.st_id where m.std_to_id=?1 and m.deleted=?2 and m.achieved=?3",nativeQuery = true)
+	Collection<Student> findmgsWhoSendToMeById(long ownId,int status,int status1);
+	@Query(value = "select distinct s.st_id,s.st_age,s.email,s.st_f_name,s.progr_id,s.st_l_name,s.st_password,s.perm_id,s.st_photo from student s inner join message m on m.std_from_id=s.st_id where m.std_to_id=?1 and m.achieved=?2 and m.deleted=?3",nativeQuery = true)
+	Collection<Student> findmgsArchievedById(long ownId,int status,int status1);
 }
